@@ -1,42 +1,31 @@
 pipeline {
-    agent any 
-    stages {
-        stage('Build') {
-            steps {
-                echo 'Build'               
+    // where or who
+    agent any
+    
+    // collection of stages
+    stages{
+        stage('Test'){
+            steps{
+                sh 'mvn test'
             }
         }
-        stage('Test') {
-            steps {
-                echo 'Test'
+        stage('Package'){
+            steps{
+                sh 'mvn clean package -Dmaven.test.skip=true'
             }
         }
-        stage('Push to artifactory') {
-            steps {
-                echo 'Push to artifactory'
-            }
-        }
-        stage('Deploy to QA') {
-            steps {
-                echo 'Deploy to QA'
-            }
-        }
-
-        stage('Deploy to Prod') {
-            steps {
-                echo 'Deploy to Prod'
+        stage('Deploy war'){
+            steps{
+                echo 'Deploy'
             }
         }
     }
-    post {
-      failure {
-        echo 'Failed'
-      }
-      success {
-        echo 'Success'
-      }
-      aborted {
-        echo 'aborted'
-      }
+    post{
+        failure{
+            echo 'Build failed'
+        }
+        success{
+            echo 'Build Success'
+        }
     }
 }
