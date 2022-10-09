@@ -28,15 +28,4 @@ pipeline {
             }
         }
     }
-    post {
-      failure {
-        echo 'Failed'
-      }
-      success {
-        echo 'Success'
-      }
-      aborted {
-        echo 'aborted'
-      }
-    }
 }
