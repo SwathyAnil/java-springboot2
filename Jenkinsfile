@@ -11,9 +11,9 @@ pipeline {
                 echo 'Test'
             }
         }
-        stage('Push to artifactory') {
+        stage('code analysis') {
             steps {
-                echo 'Push to artifactory'
+                echo 'Sonar Qube analysis'
             }
         }
         stage('Deploy to QA') {
