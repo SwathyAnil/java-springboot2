@@ -13,7 +13,7 @@ pipeline {
         }
         stage('code analysis') {
             steps {
-                echo 'Sonar Qube analysis'
+                echo 'Sonar Qube analysis done'
             }
         }
         stage('Deploy to QA') {
